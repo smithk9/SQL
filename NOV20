@@ -1,0 +1,24 @@
+Chapter 9
+
+1. SELECT cls.criminal_id, cls.first, cls.last, cc.crime_code, cc.fine_amount
+FROM crime_charges cc, crimes cr, criminals cls WHERE cc.crime_id = cr.crime_id
+AND cr.criminal_id = cls.criminal_id
+ORDER BY criminal_id, first, last, crime_code, fine_amount;
+
+2. SELECT cls.criminal_id, cls.first, cls.last, cr.classification, cr.date_charged, ap.filing_date, ap.status
+FROM criminals cls, crimes cr, appeals ap WHERE cls.criminal_id = cr.criminal_id AND cr.crime_id = ap.crime_id ORDER BY criminal_id;
+
+3. SELECT cls.criminal_id, cls.first, cls.last, cr.classification, cr.date_charged, cc.fine_amount, cc.crime_code
+FROM criminals cls, crimes cr, crime_charges cc WHERE cls.criminal_id = cr.criminal_id AND cr.crime_id = cc.crime_id 
+AND classification = 'O' ORDER BY criminal_id, date_charged;
+
+4. SELECT c.criminal_id, c.first, c.last, c.v_status, c.p_status, a.alias
+ FROM criminals c, aliases a WHERE c.criminal_id = a.criminal_id(+) ORDER BY c.last, c.first;
+
+5. SELECT c.last, c.first, s.start_date, s.end_date, p.con_freq
+FROM criminals c, sentences s, prob_contact p WHERE c.criminal_id = s.criminal_id 
+AND s.end_date - s.start_date >= p.low_amt AND s.end_date - s.start_date <= p.high_amt AND s.type = 'P' ORDER BY last, first, start_date;
+
+6. SELECT pro.last, pro.first, mgr.last AS "Manager Last Name", mgr.first AS "Manager First Name"
+FROM prob_officers pro, prob_officers mgr WHERE pro.mgr_id = mgr.prob_id(+) ORDER BY pro.last, pro.first;
+
