@@ -1,0 +1,32 @@
+CREATE SEQUENCE city_jail_criminals_seq
+INCREMENT BY 1
+START WITH 111111
+NOCACHE NOCYCLE;
+
+CREATE SEQUENCE city_jail_crimes_seq
+INCREMENT BY 1
+START WITH 111111111
+NOCACHE NOCYCLE;
+
+INSERT INTO criminals(criminal_id, last, first, street, city, state, zip, phone,
+v_status, p_status)
+VALUES (city_jail_criminals_seq.NEXTVAL, 'Capps', 'Johnny', '77 Broadway Street',
+'Denver', 'CO', 80246, 3035555555, 'N', 'N');
+
+INSERT INTO crimes(crime_id, criminal_id, classification, date_charged, status,
+hearing_date, appeal_cut_date)
+VALUES (city_jail_crimes_seq.NEXTVAL, city_jail_criminal_seq.CURRVAL,
+'F', '02-FEB-2009', 'U', '02-JUL-2009', '02-AUG-2009');
+
+/*Problem 2*/
+Create PUBLIC SYNONYM
+lastname
+FOR last.criminals;
+
+CREATE PUBLIC SYNONYM
+street 
+FOR street.ciminals;
+
+CREATE PUBLIC SYNONYM 
+phone#
+FOR phone.criminals;
