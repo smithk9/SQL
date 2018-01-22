@@ -1,0 +1,41 @@
+Chapter 5, Hands-On Assignments: 1, 2, 3, and 4.
+
+1. INSERT INTO orders(order#, customer#, orderdate) VALUES (1021, 1009, date'2009-07-20')
+2. UPDATE orders SET shipzip = '33222' WHERE order# = 1017;
+3. COMMIT;
+4. INSERT INTO orders (order#, customer#, orderdate)
+VALUES (1022, 2000, '06-AUG-09'); 
+**Foreign key error due to customer 2000 not existing in the CUSTOMER table
+
+Chapter 6, Hands-On Assignments: 1, 2, and  9.
+
+1. CREATE SEQUENCE Customers_seq
+INCREMENT BY 1
+START WITH 1021
+NOMAXVALUE
+NOMINVALUE
+NOCYCLE
+NOCACHE;
+
+2. INSERT INTO Customers (customer#, lastname, firstname, zip)
+VALUES (customers_seq.NEXTVAL, 'SHOULDERS', 'FRANK', '23567');
+
+9. CREATE INDEX customers_last_idx
+ON customers(lastname);
+
+Chapter 8, Hands-On Assignments: 7 and 8.
+
+7. SELECT lastname, referredFROM customers
+WHERE referred IS NOT NULL;
+
+8. a.) SELECT title, category
+FROM books
+WHERE category LIKE 'CHILDREN' OR category LIKE 'COOKING';
+
+b.) SELECT title, category
+FROM books
+WHERE category = 'CHILDREN' OR category = 'COOKING';
+
+c.) SELECT title, category
+FROM books
+WHERE category IN ('CHILDREN', 'COOKING');
