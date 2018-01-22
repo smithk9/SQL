@@ -1,0 +1,18 @@
+ Chapter 2, Hands-On Assignments: 9 and 10.
+9. SELECT lname||', '||fname as name from AUTHOR
+10. SELECT item, item total * Paideach AS “Item Total” FROM order item;
+
+ Chapter 3, Hands-On Assignments: 2, 3, 4, 5, and 6.
+2. CREATE TABLE employees (emp# NUMBER(5), lastname VARCHAR2(15), fistname VARCHAR2(10), job_class VARCHAR2(4));
+3. ALTER TABLE EMPLOYEESADD (EmpDate DATE DEFAULT SYSDATE ,enddate DATE);
+4. ALTER TABLE EMPLOYEES modify Job_Class VARCHAR2(2);
+5.ALTER Table EMPLOYEES DROP column EndDate;
+6. RENAME Employees To JL_EMPS;
+
+Chapter 4, Advanced Challenge
+CREATE TABLE project
+(proj# NUMBER(10) NOT NULL,
+p_name VARCHAR2(15) NOT NULL,
+p_desc VARCHAR2(40),
+p_budget NUMBER(9,2),CONSTRAINT proj#_pk PRIMARY KEY (proj#),
+CONSTRAINT p_name_uk UNIQUE (p_name));
