@@ -1,0 +1,29 @@
+FROM customers NATURAL JOIN orders NATURAL JOIN orderitems NATURAL JOIN books 
+WHERE firstname = 'JAKE'
+AND lastname = 'LUCAS'
+ORDER BY orderdate, retail-cost desc;
+
+7. SELECT gift
+FROM books, promotion
+WHERE retail BETWEEN minretail AND maxretail
+AND title = 'SHORTEST POEMS'
+
+SELECT gift
+FROM books JOIN promotion
+ON retail BETWEEN minretail AND maxretail
+WHERE title = 'SHORTEST POEMS'
+
+ Chapter 10, Hands-On Assignments: 3 and 8.
+
+3. SELECT title, TO_CHAR(quantity*(paideach-cost), '$999.99') FROM books JOIN orderitems USING(isbn) WHERE order# = 1002
+
+8. SELECT title, pubdate, SYSDATE, TRUNC(MONTHS_BETWEEN(SYSDATE, pubdate),0)Age FROM books;
+
+Chapter 11, Hands-On Assignments: 8 and 10.
+
+8. SELECT name, category, AVG(retail)
+FROM books JOIN publisher USING(pubid) 
+WHERE category IN('COMPUTER', 'CHILDREN') GROUP BY name, category;
+
+10. SELECT MAX(retail) FROM books JOIN bookauthor USING(isbn) JOIN author USING(authorid)
+WHERE lname = 'WHITE' AND fname = 'LISA';
