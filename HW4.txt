@@ -1,0 +1,30 @@
+--Problem 1
+SELECT CategoryName, ShipVia, COUNT(O.OrderID) AS 'Order Count'
+FROM orders O
+	 Inner join [Order Details] OD 
+			ON O.orderID = OD.orderID 
+	Inner join Products P 
+			ON P.ProductId = OD.ProductID 
+	inner join Categories C 
+			ON C.CategoryID = P.CategoryID 
+GROUP BY CategoryName, ShipVia 
+ORDER BY 1, 2, 3
+
+--Problem 2
+SELECT CategoryName, 
+       MIN(OrderCount) As MinOrdersShipped
+FROM
+( SELECT C.CategoryName, O.ShipVia, COUNT(O.OrderID) AS OrderCount
+FROM Orders O
+	Inner join [Order Details] OD 
+			ON O.orderID = OD.orderID 
+	Inner join Products P 
+			ON P.ProductId = OD.ProductID 
+	inner join Categories C 
+			ON C.CategoryID = P.CategoryID 
+WHERE O.orderID = OD.orderID 
+     GROUP BY CategoryName, shipVia) As G
+
+GROUP BY CategoryName 
+
+--Northwind Database 
