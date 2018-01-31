@@ -1,0 +1,28 @@
+--Problem 1
+/*
+SELECT Lastname AS 'Last Name'
+, SUBSTRING(FIRSTNAME, 1, 1) AS 'First Initial' 
+FROM HR.Employees 
+WHERE firstname like '[R-Z]%' 
+ORDER BY lastname ASC*/
+
+--Problem 2
+   /*SELECT  CONVERT(VARCHAR(10), GETDATE(),102) AS 'ANSI Format',
+             DATENAME(MONTH,GETDATE()) AS 'Month'*/
+
+--Problem 3
+/*SELECT  
+COUNT(DISTINCT oo.orderid) AS 'Number of Orders',
+SUM(oo.qty * oo.unitprice * (1 -oo.discount)) AS 'Net Values of All Orders'
+FROM Sales.OrderDETAILS OO*/
+
+--Problem 4
+SELECT
+o.orderid AS 'Order ID',
+oo.qty AS 'Quantity',
+oo.unitprice * oo.qty * (1 - oo.discount) AS 'Line Total'
+FROM Sales.Orders O
+     INNER JOIN Sales.OrderDetails OO
+	   ON o.orderid = oo.orderid
+WHERE oo.unitprice * oo.qty > 3000 AND oo.qty > 100
+ORDER BY 'Line Total' DESC
